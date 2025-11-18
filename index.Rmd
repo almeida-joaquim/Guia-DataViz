@@ -1,0 +1,44 @@
+---
+title: "Guia Rápido de DataViz: Escolha de Gráficos e Códigos em R"
+author: "Henrique, Joaquim"
+date: "Novembro de 2025"
+output: html_document 
+---
+
+## Guia Rápido de DataViz
+
+
+```{r warning=FALSE, message=FALSE}
+# Configurações globais para os chunks.
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.align = 'center',
+                      fig.height = 4,
+                      fig.width = 6)
+
+# Carrega o pacote principal para os exemplos
+require(ggplot2)
+
+# Criar dados falsos para exemplos
+set.seed(123)
+dados <- data.frame(
+    categoria = factor(sample(LETTERS[1:4], 50, replace = TRUE)),
+    valor_y = rnorm(50, 50, 10),
+    valor_x = rnorm(50, 100, 15),
+    tempo = 1:50
+)
+```
+
+### Introdução: Essencia do DataViz
+
+<p> A Visualização de dados (DataViz) é a arte de transformar números complexos em insights visuais rápidos e eficazes.
+
+<p> O primeiro passo é qual a mensagem você busca comunicar.
+
+<p> A escolha correta do gráfico depende do seu objetivo. Classificamos os gráficos em quatro categorias principais.
+
+
+### 4 Categorias de Visualização de Dados
+
+1. 
