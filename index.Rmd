@@ -19,6 +19,7 @@ knitr::opts_chunk$set(echo = TRUE,
 
 # Carrega o pacote principal para os exemplos
 require(ggplot2)
+library(tidyverse)
 
 # Criar dados falsos para exemplos
 set.seed(123)
@@ -41,4 +42,126 @@ dados <- data.frame(
 
 ### 4 Categorias de Visualização de Dados
 
-1. 
+#### 1ª Relação 
+
+<p> Mostra como duas ou mais variáveis se relacionam, se correlacionam ou interagem.
+
+##### Gráfico de Dispersão (Scatter Plot)
+<p> Ideal para identificar a correlação entre duas variáveis numéricas.
+
+```{r warning=FALSE, message=FALSE}
+# Código R (ggplot2): Relação
+# Exemplo: Existe relação entre 'valor_x' e 'valor_y'?
+ggplot(dados, aes(x = valor_x, y = valor_y)) +
+  geom_point(color = "darkred", alpha = 0.7) +
+  labs(title = "Relação entre duas Variáveis Numéricas",
+       x = "Variável X",
+       y = "Variável Y") +
+    theme_classic()
+```
+
+#### 2ª Distribuição
+
+<p> Mostra a frequência ou o comportamento de uma única variável.
+
+##### Histograma
+<p> Ideal para visualizar a forma, o centro e a dispersão de uma variável numérica.
+
+```{r warning=FALSE, message=FALSE}
+# Exemplo: Como se distribuem os valores da 'valor_y'?
+ggplot(dados, aes(x = valor_y)) +
+  geom_histogram(bins = 8, fill = "steelblue", color = "white") +
+  labs(title = "Distribuição da Variável Y",
+       x = "Valor Y",
+       y = "Contagem") +
+    theme_classic()
+```
+
+##### Lolipop
+
+<p> Gráfico de pirulito
+
+```{r warning=FALSE, message=FALSE}
+df <- data.frame(
+  Categoria = c("A", "B", "C", "D", "E"),
+  Valor = c(23, 15, 32, 18, 27)
+)
+ggplot(df, aes(x = Categoria, y = Valor)) +
+  geom_segment(aes(x = Categoria, xend = Categoria, y = 0, yend = Valor),
+               color = "#888888", linewidth = 1) +
+  geom_point(color = "#2E86AB", size = 5) +
+  labs(
+    title = "Lollipop Plot",
+    x = "Jogador",
+    y = "Pontuação"
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(
+    plot.title = element_text(face = "bold", size = 20),
+    plot.subtitle = element_text(size = 14, color = "#555"),
+    axis.text.x = element_text(size = 13),
+    axis.text.y = element_text(size = 12)
+  )
+
+```
+
+
+#### 3ª Comparação
+
+<p> Compara valores entre diferentes categorias ou séries temporais.
+
+##### Gráfico de Barras
+<p> Ideal para comparar o tamanho ou a frequência de valores em categorias discretas. Use geom_col() quando os dados já são agregados.
+
+```{r warning=FALSE, message=FALSE}
+# Exemplo: Comparando a contagem de observações por 'categoria'
+ggplot(dados, aes(x = categoria, fill = categoria)) +
+  geom_bar() +
+  labs(title = "Comparação da Contagem por Categoria",
+       x = "Categoria",
+       y = "Frequência") +
+  theme(legend.position = "none")  +
+    theme_classic()
+```
+
+##### Gráfico de Waffle
+
+
+```{r warning=FALSE, message=FALSE}
+
+# 1. Contagem por categoria
+dados <- mtcars %>%
+  count(cyl) %>%
+  mutate(prop = n / sum(n))
+
+# 2. Criar 100 quadrados
+waffle <- dados %>%
+  mutate(quadrados = round(prop * 100)) %>% 
+  uncount(quadrados) %>% 
+  mutate(index = row_number(),
+         x = (index - 1) %% 10,
+         y = (index - 1) %/% 10)
+
+# 3. Waffle plot
+ggplot(waffle, aes(x = x, y = y, fill = factor(cyl))) +
+  geom_tile(color = "white", size = 0.6, width = 0.95, height = 0.95) +
+  scale_fill_brewer(
+    palette = "Set2",
+    name = "Número de Cilindros"
+  ) +
+  coord_equal() +
+  labs(
+    title = "Proporção de Veículos por Número de Cilindros (mtcars)",
+    subtitle = "Cada quadrado representa 1% da amostra"
+  ) +
+  theme_void(base_size = 20) +
+  theme(
+    plot.title = element_text(face = "bold", size = 26, hjust = 0.5),
+    plot.subtitle = element_text(size = 16, hjust = 0.5, color = "#555555"),
+    legend.position = "bottom",
+    legend.title = element_text(size = 16),
+    legend.text = element_text(size = 14),
+    plot.margin = margin(20, 20, 20, 20)
+  )
+
+```
