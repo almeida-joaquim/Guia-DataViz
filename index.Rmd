@@ -1,5 +1,5 @@
 ---
-title: "Guia Rápido de DataViz: Escolha de Gráficos e Códigos em R"
+title: "Guia Rápido de DataViz com ggplot2: Escolha de Gráficos e Códigos em R"
 author: "Henrique Dayrell, Joaquim Almeida"
 date: "Novembro de 2025"
 output: html_document 
@@ -209,6 +209,21 @@ ggplot(waffle, aes(x = x, y = y, fill = factor(cyl))) +
   ) +
   theme_classic()
 ```
+
+***
+
+## Tabela Resumo: Como Escolher um Gráfico
+
+| Objetivo de Análise                               | Melhor Tipo de Gráfico   | Por que Usar                                               |
+| ------------------------------------------------- | ------------------------ | ---------------------------------------------------------- |
+| Comparar categorias                               | Barras / Lollipop        | Leitura direta, destaca diferenças entre grupos            |
+| Mostrar proporções do todo                        | Waffle                   | Proporções claras, unidades discretas facilitam comparação |
+| Ver relação entre duas variáveis                  | Dispersão (Scatter Plot) | Evidencia correlações, padrões e outliers                  |
+| Entender a distribuição de uma variável           | Histograma               | Mostra forma, centro, variabilidade e assimetrias          |
+| Comparar muitos valores com menos poluição visual | Lollipop                 | Reduz peso visual e mantém precisão                        |
+| Substituir gráfico de pizza com mais clareza      | Waffle                   | Evita dificuldade com ângulos e fatias pequenas            |
+
+*** 
 
 <!-- ##### Gráfico de Waffle -->
 
