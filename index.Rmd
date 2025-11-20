@@ -50,7 +50,6 @@ dados <- data.frame(
 <p> Ideal para identificar a correlação entre duas variáveis numéricas.
 
 ```{r warning=FALSE, message=FALSE}
-# Código R (ggplot2): Relação
 # Exemplo: Existe relação entre 'valor_x' e 'valor_y'?
 ggplot(dados, aes(x = valor_x, y = valor_y)) +
   geom_point(color = "darkred", alpha = 0.7) +
@@ -77,9 +76,41 @@ ggplot(dados, aes(x = valor_y)) +
     theme_classic()
 ```
 
+#### 3ª Comparação
+
+<p> Compara valores entre diferentes categorias ou séries temporais.
+
+##### Gráfico de Barras
+<p> Ideal para comparar o tamanho ou a frequência de valores em categorias discretas. Use geom_col() quando os dados já são agregados.
+
+```{r warning=FALSE, message=FALSE}
+# Exemplo: Comparando a contagem de observações por 'categoria'
+ggplot(dados, aes(x = categoria, fill = categoria)) +
+  geom_bar() +
+  labs(title = "Comparação da Contagem por Categoria",
+       x = "Categoria",
+       y = "Frequência") +
+  theme(legend.position = "none")  +
+    theme_classic()
+```
+
 ##### Lolipop
 
-<p> Gráfico de pirulito
+<!-- <p>O Gráfico de Pirulito combina dois elementos essenciais: uma linha e um ponto (círculo), que lembram um pirulito. -->
+
+<!-- - Propósito: Usado principalmente para comparação. Ele exibe um valor quantitativo para diferentes categorias. -->
+
+<!-- - Elementos: -->
+
+<!-- 	- Linha (Haste): Representa o valor, partindo do zero (ou linha de base) até o ponto de dados. -->
+
+<!-- 	- Ponto (Pirulito): Destaca o valor exato da categoria. -->
+
+<!-- - Vantagem: Quando há muitas categorias, o gráfico de barras pode parecer muito denso e pesado. O Gráfico de Pirulito economiza tinta de dados (menos área preenchida) e foca a atenção no valor final (o ponto), facilitando a leitura e a comparação das hastes. -->
+
+<p> Um substituto para o gráfico de barras simples pode ser o Lollipop Plot. Esse tipo de visualização é especialmente útil quando se deseja comparar mais de uma variável quantitativa entre si, mantendo o foco nas diferenças de forma mais limpa do que um gráfico de barras tradicional.
+
+<p> Além disso, o Lollipop Plot reduz o “peso visual” das barras e facilita a leitura quando há muitas categorias, evitando poluição visual. Ele também permite destacar valores específicos com mais elegância, tornando-o uma boa escolha para apresentações, relatórios ou dashboards que exigem clareza e organização.
 
 ```{r warning=FALSE, message=FALSE}
 df <- data.frame(
@@ -101,31 +132,26 @@ ggplot(df, aes(x = Categoria, y = Valor)) +
     plot.subtitle = element_text(size = 14, color = "#555"),
     axis.text.x = element_text(size = 13),
     axis.text.y = element_text(size = 12)
-  )
-
-```
-
-
-#### 3ª Comparação
-
-<p> Compara valores entre diferentes categorias ou séries temporais.
-
-##### Gráfico de Barras
-<p> Ideal para comparar o tamanho ou a frequência de valores em categorias discretas. Use geom_col() quando os dados já são agregados.
-
-```{r warning=FALSE, message=FALSE}
-# Exemplo: Comparando a contagem de observações por 'categoria'
-ggplot(dados, aes(x = categoria, fill = categoria)) +
-  geom_bar() +
-  labs(title = "Comparação da Contagem por Categoria",
-       x = "Categoria",
-       y = "Frequência") +
-  theme(legend.position = "none")  +
+  ) +
     theme_classic()
+
 ```
+
+
+#### 4ª Composição
+
+<p> Mostra como as partes se relacionam com o todo, geralmente exibindo porcentagens ou valores absolutos de subgrupos.
 
 ##### Gráfico de Waffle
 
+<!-- <p> O Gráfico de Waffle (ou Waffle Chart) é uma técnica de visualização de dados que utiliza uma matriz de quadrados (geralmente $10 \times 10$, totalizando 100 quadrados) para representar o todo (100%). -->
+
+
+<!-- <p> Vantagem: É considerado mais fácil para o público comparar visualmente as proporções do que o gráfico de pizza, pois os olhos humanos são melhores em comparar áreas retangulares do que ângulos ou arcos. Cada pequeno quadrado na grade geralmente representa 1% do total. -->
+
+<p>Outra alternativa interessante é o Waffle Plot, uma visualização formada por uma grade de pequenos formatos, em que cada unidade representa uma fração do total. Esse tipo de gráfico é ideal para variáveis qualitativas, especialmente quando o objetivo é mostrar proporções ou participações relativas de cada categoria dentro de um todo.
+
+<p>O Waffle Plot costuma ser uma escolha mais eficaz que o gráfico de pizza/setores porque permite perceber proporções com maior precisão, já que os valores são representados por unidades discretas e facilmente comparáveis. Além disso, ele evita problemas comuns dos detores, como dificuldade em comparar ângulos ou identificar fatias muito pequenas, e oferece uma leitura visual mais intuitiva.
 
 ```{r warning=FALSE, message=FALSE}
 
@@ -162,6 +188,20 @@ ggplot(waffle, aes(x = x, y = y, fill = factor(cyl))) +
     legend.title = element_text(size = 16),
     legend.text = element_text(size = 14),
     plot.margin = margin(20, 20, 20, 20)
-  )
-
+  ) +
+  theme_classic()
 ```
+##### Gráfico de Waffle
+
+<p> Utilizado para mostrar a composição de categorias em diferentes grupos (eixos).
+
+<!-- ```{r warning=FALSE, message=FALSE} -->
+<!-- # Exemplo: Comparação da proporção de sub-categorias (F/G) dentro de cada Categoria (A, B, C, D) -->
+<!-- ggplot(dados, aes(x = categoria, fill = sub_categoria)) + -->
+<!--     geom_bar(position = "fill") + # 'position = "fill"' normaliza para 100% -->
+<!--     labs(title = "Composição: Proporção por Sub-Categoria", -->
+<!--          x = "Categoria", -->
+<!--          y = "Proporção (100%)", -->
+<!--          fill = "Sub-Categoria") + -->
+<!--     theme_classic() -->
+<!-- ``` -->
