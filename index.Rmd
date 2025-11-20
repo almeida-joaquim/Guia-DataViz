@@ -1,11 +1,11 @@
 ---
 title: "Guia Rápido de DataViz: Escolha de Gráficos e Códigos em R"
-author: "Henrique, Joaquim"
+author: "Henrique Dayrell, Joaquim Almeida"
 date: "Novembro de 2025"
 output: html_document 
 ---
 
-## Guia Rápido de DataViz
+<!-- # Guia Rápido de DataViz -->
 
 
 ```{r warning=FALSE, message=FALSE}
@@ -31,23 +31,42 @@ dados <- data.frame(
 )
 ```
 
-### Introdução: Essencia do DataViz
+***
 
-<p> A Visualização de dados (DataViz) é a arte de transformar números complexos em insights visuais rápidos e eficazes.
+## Introdução: Essência do DataViz
 
-<p> O primeiro passo é qual a mensagem você busca comunicar.
+<!-- <p> A Visualização de dados (DataViz) é a arte de transformar números complexos em insights visuais rápidos e eficazes. -->
 
-<p> A escolha correta do gráfico depende do seu objetivo. Classificamos os gráficos em quatro categorias principais.
+<!-- <p> O primeiro passo é qual a mensagem você busca comunicar. -->
+
+<!-- <p> A escolha correta do gráfico depende do seu objetivo. Classificamos os gráficos em quatro categorias principais. -->
+
+<p> A visualização de dados (__DataViz__) é a arte de transformar informações complexas em representações visuais claras, que ajudam a revelar padrões, tendências e comparações de forma rápida e intuitiva.
+
+<p> Antes de escolher um gráfico, é fundamental responder: **qual mensagem você deseja comunicar?**
+
+<p> Cada tipo de visualização enfatiza um aspecto diferente dos dados. Neste guia, organizamos as opções mais comuns em quatro categorias principais:
 
 
-### 4 Categorias de Visualização de Dados
+1. Relação
 
-#### 1ª Relação 
+2. Distribuição
 
-<p> Mostra como duas ou mais variáveis se relacionam, se correlacionam ou interagem.
+3. Comparação
 
-##### Gráfico de Dispersão (Scatter Plot)
-<p> Ideal para identificar a correlação entre duas variáveis numéricas.
+4. Composição
+
+***
+
+## 1ª Categoria — Relação 
+
+<p> Visualizações dessa categoria mostram como duas variáveis se comportam em conjunto, ajudando a identificar tendências, associações ou correlações.
+
+***
+
+### Gráfico de Dispersão (Scatter Plot)
+
+<p> O Scatter Plot é ideal quando o objetivo é analisar a relação entre duas variáveis numéricas. Ele permite observar padrões, identificar correlações e localizar possíveis outliers. É uma das ferramentas mais úteis na análise exploratória.
 
 ```{r warning=FALSE, message=FALSE}
 # Exemplo: Existe relação entre 'valor_x' e 'valor_y'?
@@ -59,12 +78,17 @@ ggplot(dados, aes(x = valor_x, y = valor_y)) +
     theme_classic()
 ```
 
-#### 2ª Distribuição
+***
 
-<p> Mostra a frequência ou o comportamento de uma única variável.
+## 2ª Categoria — Distribuição
 
-##### Histograma
-<p> Ideal para visualizar a forma, o centro e a dispersão de uma variável numérica.
+<p> Esses gráficos mostram como os valores de uma única variável se distribuem, permitindo identificar forma, dispersão, centralidade e valores extremos.
+
+***
+
+### Histograma
+
+<p> O histograma é uma visualização essencial para entender o comportamento geral de uma variável numérica. Ele revela se a distribuição é simétrica, assimétrica, larga, estreita ou se possui mais de um pico. Excelente para análises exploratórias iniciais.
 
 ```{r warning=FALSE, message=FALSE}
 # Exemplo: Como se distribuem os valores da 'valor_y'?
@@ -76,12 +100,15 @@ ggplot(dados, aes(x = valor_y)) +
     theme_classic()
 ```
 
-#### 3ª Comparação
+***
 
-<p> Compara valores entre diferentes categorias ou séries temporais.
+## 3ª Categoria — Comparação
 
-##### Gráfico de Barras
-<p> Ideal para comparar o tamanho ou a frequência de valores em categorias discretas. Use geom_col() quando os dados já são agregados.
+<p> Visualizações dessa categoria comparam valores entre diferentes grupos, categorias ou séries temporais. São amplamente utilizadas em relatórios e dashboards.
+
+### Gráfico de Barras
+
+<p> Visualizações dessa categoria comparam valores entre diferentes grupos, categorias ou séries temporais. São amplamente utilizadas em relatórios e dashboards.
 
 ```{r warning=FALSE, message=FALSE}
 # Exemplo: Comparando a contagem de observações por 'categoria'
@@ -94,23 +121,15 @@ ggplot(dados, aes(x = categoria, fill = categoria)) +
     theme_classic()
 ```
 
-##### Lolipop
+***
 
-<!-- <p>O Gráfico de Pirulito combina dois elementos essenciais: uma linha e um ponto (círculo), que lembram um pirulito. -->
-
-<!-- - Propósito: Usado principalmente para comparação. Ele exibe um valor quantitativo para diferentes categorias. -->
-
-<!-- - Elementos: -->
-
-<!-- 	- Linha (Haste): Representa o valor, partindo do zero (ou linha de base) até o ponto de dados. -->
-
-<!-- 	- Ponto (Pirulito): Destaca o valor exato da categoria. -->
-
-<!-- - Vantagem: Quando há muitas categorias, o gráfico de barras pode parecer muito denso e pesado. O Gráfico de Pirulito economiza tinta de dados (menos área preenchida) e foca a atenção no valor final (o ponto), facilitando a leitura e a comparação das hastes. -->
+### Lolipop
 
 <p> Um substituto para o gráfico de barras simples pode ser o Lollipop Plot. Esse tipo de visualização é especialmente útil quando se deseja comparar mais de uma variável quantitativa entre si, mantendo o foco nas diferenças de forma mais limpa do que um gráfico de barras tradicional.
 
 <p> Além disso, o Lollipop Plot reduz o “peso visual” das barras e facilita a leitura quando há muitas categorias, evitando poluição visual. Ele também permite destacar valores específicos com mais elegância, tornando-o uma boa escolha para apresentações, relatórios ou dashboards que exigem clareza e organização.
+
+<p> **texto alternativo** O Lollipop Plot é uma alternativa mais elegante e leve ao gráfico de barras tradicional. Ele reduz o “peso visual”, facilitando comparações mesmo quando há muitas categorias. Além disso, destaca os valores individuais com mais clareza, tornando-o ideal para apresentações e dashboards.
 
 ```{r warning=FALSE, message=FALSE}
 df <- data.frame(
@@ -132,26 +151,25 @@ ggplot(df, aes(x = Categoria, y = Valor)) +
     plot.subtitle = element_text(size = 14, color = "#555"),
     axis.text.x = element_text(size = 13),
     axis.text.y = element_text(size = 12)
-  ) +
-    theme_classic()
+  )
 
 ```
 
+***
 
-#### 4ª Composição
+## 4ª Composição
 
-<p> Mostra como as partes se relacionam com o todo, geralmente exibindo porcentagens ou valores absolutos de subgrupos.
+<p> Mostra como as partes contribuem para o todo, geralmente enfatizando proporções ou participações relativas entre subgrupos.
 
-##### Gráfico de Waffle
+***
 
-<!-- <p> O Gráfico de Waffle (ou Waffle Chart) é uma técnica de visualização de dados que utiliza uma matriz de quadrados (geralmente $10 \times 10$, totalizando 100 quadrados) para representar o todo (100%). -->
+### Gráfico de Waffle
 
+<p> Outra alternativa interessante é o Waffle Plot, uma visualização formada por uma grade de pequenos formatos, em que cada unidade representa uma fração do total. Esse tipo de gráfico é ideal para variáveis qualitativas, especialmente quando o objetivo é mostrar proporções ou participações relativas de cada categoria dentro de um todo.
 
-<!-- <p> Vantagem: É considerado mais fácil para o público comparar visualmente as proporções do que o gráfico de pizza, pois os olhos humanos são melhores em comparar áreas retangulares do que ângulos ou arcos. Cada pequeno quadrado na grade geralmente representa 1% do total. -->
+<p> O Waffle Plot costuma ser uma escolha mais eficaz que o gráfico de pizza/setores porque permite perceber proporções com maior precisão, já que os valores são representados por unidades discretas e facilmente comparáveis. Além disso, ele evita problemas comuns dos detores, como dificuldade em comparar ângulos ou identificar fatias muito pequenas, e oferece uma leitura visual mais intuitiva.
 
-<p>Outra alternativa interessante é o Waffle Plot, uma visualização formada por uma grade de pequenos formatos, em que cada unidade representa uma fração do total. Esse tipo de gráfico é ideal para variáveis qualitativas, especialmente quando o objetivo é mostrar proporções ou participações relativas de cada categoria dentro de um todo.
-
-<p>O Waffle Plot costuma ser uma escolha mais eficaz que o gráfico de pizza/setores porque permite perceber proporções com maior precisão, já que os valores são representados por unidades discretas e facilmente comparáveis. Além disso, ele evita problemas comuns dos detores, como dificuldade em comparar ângulos ou identificar fatias muito pequenas, e oferece uma leitura visual mais intuitiva.
+<p> **texto alternativo** O Waffle Plot é uma alternativa clara e intuitiva ao gráfico de setores (pizza). Cada quadrado da grade representa uma fração igual do total (geralmente 1%), o que torna a comparação entre categorias mais direta e precisa. É especialmente útil quando o objetivo é destacar proporções de forma organizada e visualmente agradável.
 
 ```{r warning=FALSE, message=FALSE}
 
@@ -191,9 +209,10 @@ ggplot(waffle, aes(x = x, y = y, fill = factor(cyl))) +
   ) +
   theme_classic()
 ```
-##### Gráfico de Waffle
 
-<p> Utilizado para mostrar a composição de categorias em diferentes grupos (eixos).
+<!-- ##### Gráfico de Waffle -->
+
+<!-- <p> Utilizado para mostrar a composição de categorias em diferentes grupos (eixos). -->
 
 <!-- ```{r warning=FALSE, message=FALSE} -->
 <!-- # Exemplo: Comparação da proporção de sub-categorias (F/G) dentro de cada Categoria (A, B, C, D) -->
